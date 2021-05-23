@@ -31,5 +31,9 @@ public class Group {
 	public void setCondoId(int condoId) {
 		this.condoId = condoId;
 	}
+	
+	public UserType getUserType() {
+		return this.userType;
+	}
 
 }

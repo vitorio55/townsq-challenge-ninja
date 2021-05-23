@@ -69,7 +69,7 @@ public class GroupRepository {
 			String[] attrs = line.split(DataFileProcessor.ATTRIBUTE_SEPARATOR);
 
 			// If the user doesn't belong to the current group in the loop, continue
-			if (!attrs[USER_TYPES_IDX].equals(userType) && Integer.parseInt(attrs[CONDO_ID_IDX]) != condoId) {
+			if (!attrs[USER_TYPES_IDX].equals(userType.toString()) && Integer.parseInt(attrs[CONDO_ID_IDX]) != condoId) {
 				continue;
 			}
 

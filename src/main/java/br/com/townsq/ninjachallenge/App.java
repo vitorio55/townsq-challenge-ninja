@@ -18,6 +18,7 @@ import br.com.townsq.ninjachallenge.repository.GroupRepository;
 import br.com.townsq.ninjachallenge.repository.UserRepository;
 import br.com.townsq.ninjachallenge.service.GroupService;
 import br.com.townsq.ninjachallenge.service.UserService;
+import br.com.townsq.ninjachallenge.util.ValueTranslationUtil;
 
 public class App {
 
@@ -28,7 +29,7 @@ public class App {
 	public static void main(String[] args) throws FileNotFoundException {
 		File file = new File("src/resources/data-file.txt");
 		DataFileProcessor processor = new DataFileProcessor(file);
-		
+
 		// Initialize repos
 		UserRepository userRepo = new UserRepository(processor);
 		GroupRepository groupRepo = new GroupRepository(processor);
@@ -54,6 +55,9 @@ public class App {
 
 		// Extra - Read and print whole database file content
 		processor.readAndPrintContent();
+		
+		// Extra - Print all groups from database
+		App.printGroupsList(groupsList);
 	}
 
 	/**
@@ -87,6 +91,29 @@ public class App {
 			System.out.println(String.format("User Type: %s (Condo ID %d)", t.toString(), i));
 		});
 		System.out.println("");
+	}
+	
+	/**
+	 * Print groups informations
+	 * 
+	 * @param groupsList
+	 */
+	private static void printGroupsList(List<Group> groupsList) {
+		System.out.println("");
+		System.out.println("---------------------------------------");
+		System.out.println("GROUPS: ");
+		System.out.println("---------------------------------------");
+		for (Group g : groupsList) {
+			System.out.println("CONDO ID: " + g.getCondoId());
+			System.out.println("USER TYPE: " + g.getUserType());
+			System.out.println("------------");
+			g.getPermissions().forEach((func, perm) -> {
+				System.out.println("FUNCTIONALITY/PERM: "
+					+ ValueTranslationUtil.getCapitalizedStrFromFunctionalityType(func) + "/"
+					+ ValueTranslationUtil.getCapitalizedStrFromPermissionType(perm));
+			});
+			System.out.println("");
+		}
 	}
 
 }

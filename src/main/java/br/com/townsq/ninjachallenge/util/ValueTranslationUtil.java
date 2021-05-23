@@ -66,12 +66,24 @@ public class ValueTranslationUtil {
 	/**
 	 * Get permission type as capitalized string
 	 * 
-	 * @param fType - the permission type as enum to be returned as a capitalized string
+	 * @param pType - the permission type as enum to be returned as a capitalized string
 	 * @return capitalized string
 	 */
 	public static String getCapitalizedStrFromPermissionType(PermissionType pType) {
 		String firstLetterCap = pType.toString().substring(0, 1).toUpperCase();
 		String restOfOriginalStr = pType.toString().substring(1).toLowerCase();
+		return String.format("%s%s", firstLetterCap, restOfOriginalStr);
+	}
+	
+	/**
+	 * Get functionality type as capitalized string
+	 * 
+	 * @param fType - the functionality type as enum to be returned as a capitalized string
+	 * @return capitalized string
+	 */
+	public static String getCapitalizedStrFromFunctionalityType(FunctionalityType fType) {
+		String firstLetterCap = fType.toString().substring(0, 1).toUpperCase();
+		String restOfOriginalStr = fType.toString().substring(1).toLowerCase();
 		return String.format("%s%s", firstLetterCap, restOfOriginalStr);
 	}
 
