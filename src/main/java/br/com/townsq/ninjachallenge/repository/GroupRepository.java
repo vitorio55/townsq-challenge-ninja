@@ -85,7 +85,7 @@ public class GroupRepository {
 	/**
 	 * Get all groups that a user belongs to
 	 * 
-	 * @param user
+	 * @param user - Must have at least the user types set for proper group retrieval
 	 * @return
 	 * @throws FileNotFoundException
 	 */

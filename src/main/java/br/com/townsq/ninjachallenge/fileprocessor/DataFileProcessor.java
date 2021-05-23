@@ -22,7 +22,7 @@ public class DataFileProcessor {
 
 	private File file;
 	
-	// Useful parsing defitions
+	// Useful parsing definitions
 	public static final String USER_LINE_PREFIX = "Usuario";
 	public static final String GROUP_LINE_PREFIX = "Grupo";
 	public static final String ATTRIBUTE_SEPARATOR = ";";
