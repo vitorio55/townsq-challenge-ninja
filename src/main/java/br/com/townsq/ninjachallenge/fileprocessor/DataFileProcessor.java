@@ -132,7 +132,7 @@ public class DataFileProcessor {
 			String[] t = userTypeStr.split(DataFileProcessor.USER_TYPE_SEPARATOR);
 
 			userTypesMap.put(ValueTranslationUtil.getUserTypeFromString(t[REGEX_GROUP_USER_TYPE_IDX]),
-					Integer.parseInt(t[REGEX_GROUP_CONDO_ID_IDX]));			
+					Integer.parseInt(t[REGEX_GROUP_CONDO_ID_IDX]));
 		}
 
 		return userTypesMap;

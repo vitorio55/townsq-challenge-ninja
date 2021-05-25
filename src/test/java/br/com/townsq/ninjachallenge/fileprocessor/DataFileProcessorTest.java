@@ -31,7 +31,7 @@ public class DataFileProcessorTest {
 		file = new File("src/resources/data-file.txt");
 		this.dataFileProcessor = new DataFileProcessor(file);
 	}
-	
+
     @Test
     @DisplayName("Get Entity Lines From File - Null file throws exception")
     public void getEntityLinesFromFile_nullFileThrowsException() {
@@ -72,14 +72,6 @@ public class DataFileProcessorTest {
         assertThrows(FileNotFoundException.class,
         		() -> this.dataFileProcessor.readAndPrintContent()
         );
-    }
-    
-    @Test
-    @DisplayName("Read And Print Content - Print content success")
-    public void readAndPrintContent_printContentSuccess() throws FileNotFoundException {
-    	System.out.println("---------------------------------");
-    	System.out.println("Read And Print Content unit test:\n");
-    	this.dataFileProcessor.readAndPrintContent();
     }
 
     @Test
