@@ -4,8 +4,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -23,13 +23,11 @@ import br.com.townsq.ninjachallenge.model.UserType;
 
 public class DataFileProcessorTest {
 
-	private File file;
 	private DataFileProcessor dataFileProcessor;
 
 	@BeforeEach
-	public void setup() {
-		file = new File("src/resources/data-file.txt");
-		this.dataFileProcessor = new DataFileProcessor(file);
+	public void setup() throws IOException {
+		this.dataFileProcessor = new DataFileProcessor("data-file.txt");
 	}
 
     @Test

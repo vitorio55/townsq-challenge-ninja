@@ -1,7 +1,12 @@
 package br.com.townsq.ninjachallenge.fileprocessor;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -29,6 +34,8 @@ public class DataFileProcessor {
 	public static final String USER_TYPE_SEPARATOR = ",";
 	public static final String FUNCTIONALITY_TYPE_SEPARATOR = ",";
 
+	public static final int DEFAULT_BUFFER_SIZE = 8192;
+	
 	// Regex group indexes
 	public static final int REGEX_GROUP_USER_TYPE_IDX = 0;
 	public static final int REGEX_GROUP_CONDO_ID_IDX = 1;
@@ -36,8 +43,12 @@ public class DataFileProcessor {
 	public static final int REGEX_GROUP_PERM_TYPE_IDX = 1;
 
 
-	public DataFileProcessor(File file) {
-		this.file = file;
+	public DataFileProcessor(String fileName) throws IOException {
+		try (InputStream inputStream = getClass().getResourceAsStream("/data-file.txt");
+		    BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream))) {
+		    this.file = new File("/data-file.tmp");
+			copyInputStreamToFile(inputStream, this.file);
+		}
 	}
 
 	public void setFile(File file) {
@@ -116,7 +127,7 @@ public class DataFileProcessor {
 	}
 
 	/**
-	 * Get a map with user types and condo IDs from a data line.
+	 * Get a map with user types and condo IDs from a data line
 	 * 
 	 * @param dataStr - the data line
 	 * @return map with user types and condo IDs
@@ -139,7 +150,7 @@ public class DataFileProcessor {
 	}
 
 	/**
-	 * Get a map with functionality types and permission types from a data line.
+	 * Get a map with functionality types and permission types from a data line
 	 * 
 	 * @param dataStr - the data line
 	 * @return map with functionality types and permission types
@@ -160,5 +171,22 @@ public class DataFileProcessor {
 
 		return permissionsMap;
 	}
+	
+	/**
+	 * Copy an input stream to a already created file
+	 * 
+	 * @param inputStream - the input stream from which the data will be copied
+	 * @param file - the output file
+	 * @throws IOException
+	 */
+    private static void copyInputStreamToFile(InputStream inputStream, File file) throws IOException {
+        try (FileOutputStream outputStream = new FileOutputStream(file, false)) {
+            int read;
+            byte[] bytes = new byte[DEFAULT_BUFFER_SIZE];
+            while ((read = inputStream.read(bytes)) != -1) {
+                outputStream.write(bytes, 0, read);
+            }
+        }
+    }
 
 }

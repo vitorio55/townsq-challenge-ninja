@@ -1,13 +1,14 @@
 /**
  * 
- * 23/05/2021
+ * 24/05/2021
  * @author Vitorio Mincarone
  * 
  */
 package br.com.townsq.ninjachallenge;
 
-import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.net.URISyntaxException;
 import java.util.Arrays;
 import java.util.List;
 
@@ -24,11 +25,11 @@ public class App {
 
 	/**
 	 * @param args
-	 * @throws FileNotFoundException 
+	 * @throws IOException 
+	 * @throws URISyntaxException 
 	 */
-	public static void main(String[] args) throws FileNotFoundException {
-		File file = new File("src/resources/data-file.txt");
-		DataFileProcessor processor = new DataFileProcessor(file);
+	public static void main(String[] args) throws IOException, URISyntaxException {
+		DataFileProcessor processor = new DataFileProcessor("data-file.txt");
 
 		// Initialize repos
 		UserRepository userRepo = new UserRepository(processor);
@@ -36,10 +37,6 @@ public class App {
 
 		// Initialize services
 		UserService userService = new UserService(userRepo, groupRepo);
-		GroupService groupService = new GroupService(groupRepo);
-
-		List<User> usersList = userService.getUsersFromDatabase();	
-		List<Group> groupsList = groupService.getGroupsFromDatabase();
 
 		List<String> emailsList = Arrays.asList(
 				"rodrigo.soares@gmail.com",
@@ -50,14 +47,17 @@ public class App {
 		// Print highest permissions on each condo for each user
 		App.printHighestUserPermissions(userService, emailsList);
 
+		// Extras (uncomment below)
+		// GroupService groupService = new GroupService(groupRepo);
+		
 		// Extra - Display information returned from database for each user
-		usersList.forEach(u -> App.printUserBanner(u));
+		// usersList.forEach(u -> App.printUserBanner(u));
 
 		// Extra - Read and print whole database file content
-		processor.readAndPrintContent();
+		// processor.readAndPrintContent();
 		
 		// Extra - Print all groups from database
-		App.printGroupsList(groupsList);
+		// App.printGroupsList(groupsList);
 	}
 
 	/**

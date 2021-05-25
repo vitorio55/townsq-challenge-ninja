@@ -2,7 +2,6 @@ package br.com.townsq.ninjachallenge.service;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Arrays;
 import java.util.LinkedHashMap;
@@ -14,7 +13,6 @@ import org.junit.jupiter.api.Test;
 import org.mockito.BDDMockito;
 import org.mockito.Mockito;
 
-import br.com.townsq.ninjachallenge.fileprocessor.DataFileProcessor;
 import br.com.townsq.ninjachallenge.model.FunctionalityType;
 import br.com.townsq.ninjachallenge.model.PermissionType;
 import br.com.townsq.ninjachallenge.model.UserType;

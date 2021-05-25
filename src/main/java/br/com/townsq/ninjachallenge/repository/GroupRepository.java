@@ -3,14 +3,11 @@ package br.com.townsq.ninjachallenge.repository;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
 import br.com.townsq.ninjachallenge.fileprocessor.DataFileProcessor;
 import br.com.townsq.ninjachallenge.model.FileEntityType;
-import br.com.townsq.ninjachallenge.model.FunctionalityType;
-import br.com.townsq.ninjachallenge.model.PermissionType;
 import br.com.townsq.ninjachallenge.model.UserType;
 import br.com.townsq.ninjachallenge.model.entity.Group;
 import br.com.townsq.ninjachallenge.model.entity.User;

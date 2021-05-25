@@ -83,8 +83,6 @@ public class UsersServiceTest {
 	}
 	
 	private void mockGroupRepositoryResponses() throws FileNotFoundException {
-		List<User> mockedUsersList = this.getMockedUsers();
-
 		LinkedHashMap<FunctionalityType, PermissionType> mockedPermissions0 = new LinkedHashMap<>();
 		mockedPermissions0.put(FunctionalityType.RESERVAS, PermissionType.ESCRITA);
 		mockedPermissions0.put(FunctionalityType.ENTREGAS, PermissionType.NENHUMA);
